@@ -44,16 +44,33 @@ def setup():
     #Our variable "name" is used to store our name, captured by keyboard input.
     name = input("What is your name, gingerbread person?")
     #randint is a great way of adding some variety to your players statistics through randomness
-    HP = randint(5,20)
-    MP = randint(5,20)
+    HP = randint(20,50)
+    MP = randint(20,50)
+
+def enemy():
+    global enemyHP
+    global enemyMP
+    global enemyname
+    enemyHP = randint(5,10)
+    enemyMP = randint(10,20)
+    #Below is the enemy's name, perhaps you could change this to a list and then shuffle the list, such as we did for the villager above.
+    enemynamechoice = ["Chocolate Blob Bob", "Hot Fudge Sludge", "Bad Mad Rad Chocolate Dad", "Annoying Big Ball of Chocolate"]
+    #Shuffle will shuffle the list contents into a random order.
+    shuffle(enemynamechoice)
+    enemyname = enemynamechoice [0]
+    print ("\nSuddenly you hear a gurgle, and from the shadows you see "+enemyname+" rolling straight at you....")
+    #print enemyname
+    print (""+enemyname+" has %s Health Points" % str(enemyHP))
+    print ("Your enemy has %s Magic Points" % str(enemyMP))
+
 
 def villager():
     #This will create a randomly named Villager to interact with
     global npcname
     global responses
     #Below is a list, we can store lots of things in a list and then retrieve them later.
-    responses = ["Beware the chocolate ogre he haunts this beautiful and delicious town", "Are you a hero?", "There has been a chocolate ogre terrorizing the village"]
-    npcnamechoice = ["Oreo", "Hot Sauce", "Sandwhich", "Pasta"]
+    responses = ["Beware the chocolate Ogre he haunts this beautiful and delicious town", "Are you a hero?", "There has been a chocolate ogre terrorizing the village"]
+    npcnamechoice = ["Oreo", "Hot Sauce", "Sandwich", "Pasta"]
     #Shuffle will shuffle the list contents into a random order.
     shuffle(npcnamechoice)
     npcname = npcnamechoice[0]
@@ -64,28 +81,12 @@ def villager():
         print ("%s: %s" % (npcname, responses[0]))
     else:
         print ("%s: Goodbye" % npcname)
-    print ("If you want to learn more about the Chocolate Ogre ask the oompa loompa by pressing c and enter. If you want to ignore the oompa loompa and continue on your journey, press i and continue")
+    print ("If you want to learn more about the chocolate ogre ask the oompa loompa by pressing c and enter. If you want to ignore the oompa loompa and continue on your journey, press i and continue")
     if input() == "c":
-        print (""+npcname+" then explains to you how the chocolate Ogre recently came upon their town and has been sleeping in their sacred chocolate river. He is starting to kill all of the oompa loompa's friends and they are continously begging him to leave but no one is brave enough to stop him. You then explain to him how you will keep a look out and be careful incase you come across the ogre.")
+        print (""+npcname+" then explains to you how the chocolate ogre is named "+enemyname+" and recently came upon their town and has been sleeping in their sacred chocolate river. He is starting to kill all of his oompa loompa's friends and they are continously begging him to leave but no one is brave enough to stop him. You then explain to him how you will keep a look out and be careful incase you come across the ogre.")
     
     if input() == "i":
         print ("Thanks for the warning, but I'm sure I will be fine.")
-
-def enemy():
-    global enemyHP
-    global enemyMP
-    global enemyname
-    enemyHP = randint(5,20)
-    enemyMP = randint(5,20)
-    #Below is the enemy's name, perhaps you could change this to a list and then shuffle the list, such as we did for the villager above.
-    enemynamechoice = ["Chocolate Blob Bob", "Hot Fudge Sludge", "Bad Mad Rad Chocolate Dad", "Annoying Big Ball of Chocolate"]
-    #Shuffle will shuffle the list contents into a random order.
-    shuffle(enemynamechoice)
-    enemyname = enemynamechoice [0]
-    print ("\nSuddenly you hear a gurgle, and from the shadows you see an "+enemyname+" rolling straight at you....")
-    #print enemyname
-    print (""+enemyname+" has %s Health Points" % str(enemyHP))
-    print ("Your enemy has %s Magic Points" % str(enemyMP))
 
 
 """
@@ -132,8 +133,7 @@ else:
     print ("You stay at home, sat in your favourite marshmallow chair with your hot dog dog watching the fire grow colder. The Safe Haven of Delacacies no longer has a hero.")
     print ("Game Over")
     sys.exit(0)
-
-print ("In the distance to the north you can see a small with litte people that you have never gotten a chance to visit, to the east you can see a chocolate river and to the west a field of wild french fries.")
+print ("In the distance to the north you can see a small with little people that you have never gotten a chance to visit, to the east you can see a chocolate river and to the west a field of wild french fries.")
 
 #Remember those functions we created at the start of the code? Well here we are using them in the game.
 print ("\n")
@@ -153,29 +153,36 @@ elif move == 'w':
     print ("A oompa loompa is in your path and greets you\n")
 
 villager()
+
+print ("After leaving the oompa loompa to do some more exploring you walk around until you come across a strange dark hole that had a latter leading down")
+print ("Looking for adventure you climb down the latter to see if perhaps there was a tunnel leading to more delicious foods.")
+print ("Soon you realize... that the tunnel is made out of...black licorice. Then you realize that this tunnel could possibly be the towns sewage system and simply brush off the thought in hopes of uncovering a new realm.")
 enemy()
 sleep(3)
 
-fight = input("Do you wish to fight?" )
+fight = input("Do you wish to fight? To fight the ogre press y and enter to continue. " )
 
 if fight == "y":
     while HP > -5:
 #This loop will only work while our characters HP is greater than -5.
-        hit = randint(5,10)
+        hit = randint(10,20)
         print ("You use your weapon and cause %s of damage" % str(hit))
         enemyHP = enemyHP - hit
         print (enemyHP)
-        enemyhit = randint(0,3)
+        enemyhit = randint(0,1)
         print ("The ogre swings a club at you and causes %s of damage" % str(enemyhit))
         HP = HP - enemyhit
         print (HP)
 else:
-    print ("You turn and run away from the menacing chocolate ogre")
+    print ("You turn and run away from "+enemyname+"")
 
-print ("You have finally killed the menacing and evil Ogre and the Safe Haven of Delacacies has returned to peace.")
-print ("As you walk through the village on your way home you tell the oompa loompa's of your battle. They cheer in excitement and gratitude and invite you to a delicious buffet down by the Chocolate River, with your favorite food... Burgers. ")
-print ("As you walk down to the River where your delicious dinner awaits you get to talking to the oopma loompas and find your friend "+npcname+" and you become bestfriends")
-print ("Then you live happily ever after with your oompa loompa friends, in the Safe Haven you now call home.")
+if enemyHP < 1:
+    print ("You have finally killed the menacing and evil "+enemyname+" and the Safe Haven of Delacacies has returned to peace.")
+    print ("As you walk through the village on your way home you tell the oompa loompa's of your battle. They cheer in excitement and gratitude and invite you to a delicious buffet down by the Chocolate River, with your favorite food... Burgers. ")
+    print ("As you walk down to the River where your delicious dinner awaits you get to talking to the oopma loompas and find your friend "+npcname+" and you become bestfriends")
+    print ("Then you live happily ever after with your oompa loompa friends, in the Safe Haven you now call home.")
+else :
+    print("YOU HAVE FAILED YOUR OOMPA LOOMPA FRIENDS AND NOW THEY WILL ALL DIE BECAUSE YOU WERE TOO SCARED TO KILL "+enemyname+"")
 
 print ("   _       _                 _")
 print ("  /_\   __| |_   _____ _ __ | |_ _   _ _ __ ___")
@@ -194,3 +201,4 @@ print ("| | | |/ _ \| | | |")
 print ("| |_| | (_) | |_| |")
 print (" \__, |\___/ \__,_|")
 print (" |___/")
+
