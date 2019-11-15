@@ -100,6 +100,9 @@ global HP
 global MP
 global move
 global enemyHP
+enemyname = None
+name = None
+MP = None
 print ("Welcome to the Safe Haven of Delicacies, %s" % name)
 #Sleep is Python's way of pausing the game for a specified number of seconds
 sleep(2)
@@ -112,18 +115,19 @@ print ("Your magic skill is" + " " + str(MP))
 print ("Would you like to venture out into the Haven? Press y then enter to continue")
 #Below we use input to ask for user input, and if it is equal to y, then the code underneath is run.
 if input() == "y":
+    weapons = []
+    weapons.append("baguette")
+    weapons.append("pizza")
+    weapons.append("marshmallow gun")
     print ("You are in your burger shaped home that you built to express your love for burgers. You are seated in a comfy marshmallow chair with your hot dog dog on your lap. There is a roaring graham cracker fireplace in front of you, and above the fire you can see your baguette, pizza and marshmallow gun.")
     print ("Would you like to take your baguette and pizza or would you like to take your marshmallow gun? To take your baguette and pizza, press y then enter to continue. If you want to take the marshmallow gun press m and enter to continue.")
-    if input() == "y":
+    weapon = input()
+    if weapon == "y":
         #This is a list, and it can store many items, and to do that we "append" items to the list.
-        weapons = []
-        weapons.append("baguette")
-        weapons.append("pizza")
         print ("You are now carrying your %s and your %s" % (weapons[0], weapons[1]))
         print ("Armed with your %s and %s you swing open the door to your delicious burger home and see a vast vally of licorice string gleaming in the sunshine." % (weapons[0], weapons[1]))
-    if input () == "m":
-        weapons = []
-        weapons.append("marshmallow gun")
+    elif weapon == "m":
+        print("debugger")
         print ("You are now carrying your %s" % (weapons[2]))
         print ("Armed with your %s you swing open the door to your delicous burger home and see a vast valley of licorice string gleaming in the sunshine." % (weapons[2]))
     else:
@@ -201,4 +205,3 @@ print ("| | | |/ _ \| | | |")
 print ("| |_| | (_) | |_| |")
 print (" \__, |\___/ \__,_|")
 print (" |___/")
-
